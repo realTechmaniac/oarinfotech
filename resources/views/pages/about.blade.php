@@ -1,164 +1,163 @@
-@extends('layouts.app')
+@extends('layouts.homeIndex')
 
+@section('content')
 
-<!-- ABOUT PAGE START  -->
-
-  @section('content')
-     <section class="home-slider ftco-degree-bg">
-      <div class="slider-item bread-wrap" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row slider-text justify-content-center align-items-center">
-            <div class="col-md-10 col-sm-12 ftco-animate mb-4 text-center">
-              <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>About</span></p>
-              <h1 class="mb-3 bread">About Us</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section-2 ftco-degree-bg">
-      <div class="container d-flex">
-        <div class="section-2-blocks-wrapper row d-flex">
-          <div class="img col-sm-12 col-lg-6 order-last" style="background-image: url('images/about.jpg');">
-          </div>
-          <div class="text col-lg-6 order-first ftco-animate">
-            <div class="text-inner align-self-start">
-              <h3 class="heading">Welcome to our website</h3>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section ftco-counter ftco-degree-bg" id="section-counter">
+	   <!-- HOT DEAL SECTION -->
+    <div id="second-deal" class="section">
+      <!-- container -->
       <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-            <h2>Our achievements</h2>
-          </div>
-        </div>
+        <!-- row -->
         <div class="row">
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="1000">0</strong>
-                <span>Customers are satisfied with our professional support</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="12000">0</strong>
-                <span>Amazing preset options to be mixed and combined</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18 text-center">
-              <div class="text">
-                <strong class="number" data-number="10000">0</strong>
-                <span>Average response time on live chat support channel</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section testimony-section ftco-degree-bg">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">Customer Says</span>
-            <h2>Our satisfied customer says</h2>
-          </div>
-        </div>
-        <div class="row ftco-animate">
           <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item text-center">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Dennis Green</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
-                </div>
+            <div class="pot-deal align-items-center">
+              <div>
+                
+                <h1 class="about-text" style="color: white; padding-bottom: 10px;">
+                  WELCOME TO OAR INFOTECH
+                </h1>
+
               </div>
-              <div class="item text-center">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Dennis Green</p>
-                    <span class="position">Interface Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item text-center">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Dennis Green</p>
-                    <span class="position">UI Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item text-center">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Dennis Green</p>
-                    <span class="position">Web Developer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item text-center">
-                <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Dennis Green</p>
-                    <span class="position">System Analytics</span>
-                  </div>
-                </div>
-              </div>
+              <h4 class="text" style="color: white;">We provide first class ICT solutions with result driven achievements</h4>
+              <p>New Collection Up to 50% OFF</p>
+              <a class="primary-btn cta-btn" href="#">Get Started</a>
             </div>
           </div>
         </div>
+        <!-- /row -->
       </div>
+      <!-- /container -->
+    </div>
+    <!-- /HOT DEAL SECTION -->
+    <section>
+    	
+    	<div class="container">
+    		<div class="text-center">
+    			<h1 style="padding-top: 20px; ">OUR EXPERTISE</h1>
+    		</div>
+    		<div class="row" style="padding-top: 40px;">
+	    		<div class="col-md-4">
+	    			<div>
+	    				<div class="text-center">
+	    					<img src="asset2/img/coder.png">
+	    				</div>
+	    				<h3>ICT Consultancy and Training</h3>
+	    			</div>
+	    			</span>empor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+	    		<div class="col-md-4">
+	    			<div class="text-centert">
+	    				<div class="text-center">
+	    					<img src="asset2/img/coder.png">
+	    				</div>
+	    				<h3>Web Development</h3>
+	    			</div>
+	    			<p> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+	    		<div class="col-md-4">
+	    			<div class="text-centert">
+	    				<div class="text-center">
+	    					<img src="asset2/img/coder.png">
+	    				</div>
+	    				<h3>Computer Installation</h3>
+	    			</div>
+	    			<p> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+    		</div>
+    		<div class="row">
+	    		<div class="col-md-4">
+	    			<span>
+	    				<h3>Software Development</h3>
+	    			</span>
+	    			<p>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+	    		<div class="col-md-4">
+	    			<span>
+	    				<h3>Data Implementation</h3>
+	    			</span>
+	    			<p>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+	    		<div class="col-md-4">
+	    			<span>
+	    				<h3>Networking</h3>
+	    			</span>
+	    			<p>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+    		</div>
+    		<div class="row">
+	    		<div class="col-md-4">
+	    			<span>
+	    				<h3>ICT Consultancy and Training</h3>
+	    			</span>
+	    			<p>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+	    		<div class="col-md-4">
+	    			<span>
+	    				<span class="row">
+	    					<h3>Software Development</h3>
+	    				</span>
+	    				
+	    			</span>
+	    			<p>ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+	    		<div class="col-md-4">
+	    			<span>
+	    				<h3>Computer Installation</h3>
+	    			</span>
+	    			<p><Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	    		</div>
+    		</div>
+    	</div>
+
+    	
     </section>
-  @endsection
 
-<!-- ABOUT PAGE END  -->
 
-    
+
+
+
+
+@endsection

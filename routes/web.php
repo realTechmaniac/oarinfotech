@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //Home Page Route::
 
-Route::get('/home', 'PagesController@index')->name('home');
+Route::get('/', 'PagesController@index')->name('home');
 
 //About Page Route::
 
@@ -33,5 +33,27 @@ Route::get('/contact', 'PagesController@contact')->name('contact');
 
 Route::get('/admin', 'PagesController@admin')->name('admin');
 
+//Store rpute::
+
+Route::get('/store', 'PagesController@store')->name('store');
+
+
+//Route to handle all PRODUCTS CRUD operations:
+
+Route::resource('products', 'ProductController');
+
+//Route to handle all Categories CRUD OPERATIONS::
+
+Route::resource('categories','CategoriesController');
+
+
+Route::post('/categories/{category}/products', 'ProductCategoryController@store');
+
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 

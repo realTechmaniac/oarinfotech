@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 <!-- SERVICES PAGE START  -->
 @section('content')
 	<section class="home-slider ftco-degree-bg">

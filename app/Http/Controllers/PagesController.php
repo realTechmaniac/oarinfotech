@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class PagesController extends Controller
 {
@@ -34,6 +35,22 @@ class PagesController extends Controller
 
     public function admin(){
 
-    	return view('dashboard.pages.admin');
+        $products = Product::all();
+
+    	return view('dashboard.pages.admin-index',compact('products'));
+    }
+
+    //Pages that returns all Product Categories::
+    
+    public function showCategories(){
+
+        return view('dashboard.pages.categories');
+    }
+
+    //Route to return the store products page::
+
+    public function store(){
+
+        return view('pages.store');
     }
 }
