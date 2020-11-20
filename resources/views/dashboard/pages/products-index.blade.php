@@ -31,9 +31,11 @@
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Product Name</th>
-                                                <th>Product Price</th>
-                                                <th>Product Description</th>
+                                                <th>Old Price</th>
+                                                <th>New Price</th>
+                                                <!-- <th>Product Description</th> -->
                                                 <th>Product Category</th>
+                                                <th>Product Status</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -47,15 +49,18 @@
                                              
                                                 <td>{{$key+1}}</td>
                                                 <td>{{$product->product_name}}</td>
-                                                <td>{{$product->product_price}}</td>
-                                                <td>{{$product->product_description}}</td>
+                                                <td>{{$product->old_price}}</td>
+                                                <td>{{$product->new_price}}</td>
+                                                <!-- <td>{{$product->product_description}}</td> -->
                                                 <td>{{$product->product_category}}</td>
+                                                <td>{{$product->product_status}}</td>
+
                                              
                                                 <td>
                                                     <div class="row">
                                                         
 
-                                                            <div class="col-md-2 mr-2">
+                                                            <div class="col-md-2 mr-1">
 
                                                                 <a href="/products/{{$product->id}}/edit" class="btn btn-primary waves-effect waves-light mr-2">Edit</a>
 
@@ -71,12 +76,12 @@
 
                                                                 <input type="" name="" hidden="" value="{{$product->id}}">
        
-                                                               <div class="col-md-2 ml-2">
+                                                               <div class="col-md-2 ml-1">
                                                                     <button type="submit" class="btn btn-danger waves-effect waves-light ml-2" type="submit" >Delete</button>
                                                                 </div> 
                                                         </form>
-                                                
 
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>

@@ -29,14 +29,83 @@ Route::get('/services', 'PagesController@services')->name('services');
 
 Route::get('/contact', 'PagesController@contact')->name('contact');
 
-//Admin Page Route::
+Route::get('/shop', 'PagesController@shop')->name('shop');
 
-Route::get('/admin', 'PagesController@admin')->name('admin');
+Route::get('/showlaptops', 'PagesController@showLaptops')->name('laptops');
 
-//Store rpute::
+Route::get('/showphones', 'PagesController@showPhones')->name('phones');
+
+Route::get('/laptopaccess', 'PagesController@showLapAccess')->name('laptopaccess');
+
+Route::get('/phoneaccess', 'PagesController@showPhoneAccess')->name('phoneaccess');
+
+
+//CART ROUTES::
+
+Route::get('/cart', 'CartController@index')->name('cart.index');
+
+Route::post('/cart', 'CartController@store')->name('cart.store');
+
+Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
+
+//Update Qty in Cart::
+
+Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
+
+Route::post('/cart/switchToSaveForLater{product}', 'CartController@switchToSaveForLater')->name('cart.switch');
+
+Route::get('empty',function(){
+
+	Cart::instance('saveForLater')->destroy();
+});
+
+//Store route::
 
 Route::get('/store', 'PagesController@store')->name('store');
 
+Route::get('/activate_slider', 'SliderController@activate');
+
+Route::get('/deactivate/{slider}', 'SliderController@deactivate');
+
+Route::get('/activate/{slider}', 'SliderController@activate');
+
+Route::post('/categories/{category}/products', 'ProductCategoryController@store');
+
+Route::get('/add-to-cart/{id}','ProductController@addToCart');
+
+Route::get('/checkout','PagesController@showCheckOut')->middleware('auth');
+
+//GUEST CHECK OUT::
+
+Route::get('/checkout','PagesController@showCheckOut')->middleware('auth');
+
+Route::get('/profile','PagesController@showProfile');
+
+Route::get('/showproduct/{id}', 'PagesController@showProduct');
+
+Auth::routes();
+
+Route::get('/home', 'PagesController@index')->name('home');
+
+Route::get('/book', 'PagesController@book');  
+
+Route::get('/showlogin', 'ClientController@showLogin')->name('showlogin');
+
+Route::get('/showregister', 'ClientController@showRegister')->name('showregister');
+
+Route::get('/removeitem/{id}','ClientController@removeitem');
+
+Route::post('/updateqty', 'ClientController@updateqty');
+
+Route::get('/reset', 'ClientController@recoverPassword');
+
+Route::post('/saveaccount','ClientController@saveaccount');
+
+Route::post('/accessaccount','ClientController@accessaccount');
+
+Route::get('/logout', 'ClientController@logout');
+
+Route::get('/users', 'ClientController@showAllUsers');
 
 //Route to handle all PRODUCTS CRUD operations:
 
@@ -46,14 +115,28 @@ Route::resource('products', 'ProductController');
 
 Route::resource('categories','CategoriesController');
 
+Route::resource('sliders','SliderController');
 
-Route::post('/categories/{category}/products', 'ProductCategoryController@store');
+Route::get('delete_slider{id}', 'SliderController@deleteSlider');
 
+Route::get('/userdashboard', 'PagesController@showUserDashboard')->middleware('auth');
 
-
+Route::get('/admindashboard', 'PagesController@admin');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+//USER ROUTES::
+
+Route::middleware('auth')->group( function(){
+
+	Route::get('/userprofile', 'UserController@edit')->name('user.edit')->middleware('auth');
+
+});
 

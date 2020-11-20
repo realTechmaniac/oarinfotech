@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
+use App\Cart;
+use Session;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -27,7 +31,9 @@ class ProductController extends Controller
     public function create()
     {
 
-        return view('dashboard.pages.create');
+        $categories = Category::all();
+
+        return view('dashboard.pages.create')->withCategories($categories);
     }
 
     /**
@@ -42,12 +48,15 @@ class ProductController extends Controller
        $request->validate([
 
             'product_name'        =>'required|max:50',
-            'product_price'       =>'required|numeric',
+            'old_price'           =>'required',
+            'new_price'           =>'required',
             'product_description' =>'required|max:255',
+            'product_details'     =>'required',
             'product_colour'      =>'required',
             'product_image'       =>'image|required|max:1999',
             'product_discount'    =>'required',
-            'product_category'    => 'required'
+            'product_category'    => 'required',
+            'product_status'      => 'required'
        ]);
 
 
@@ -74,24 +83,37 @@ class ProductController extends Controller
 
             //Upload Image
 
-            $path = $request->file('product_image')->storeAs('/public/product_images',             $fileNameToStore);
+            $path = $request->file('product_image')->storeAs('/public/product_images',            
+             $fileNameToStore);
 
         }else{
+            
 
             $fileNameToStore = 'noimage.jpg';
         }
 
        //Create a Post Istance and save to DB:
 
+        $check_record = Product::where('product_name', $request->input('product_name'))->first();
+
+            if ($check_record) {
+
+                return back()->with('error','Product already exist in database');
+
+            } else {
+               
+            
             $product = new Product();
 
             $product->product_name        = $request->product_name;
 
-            $product->product_price       = $request->product_price;
+            $product->old_price           = $request->old_price;
+
+            $product->new_price           = $request->new_price;
 
             $product->product_description = $request->product_description;
 
-            $product->product_colour     =  $request->product_colour;
+            $product->product_colour      = $request->product_colour;
 
             $product->product_discount    =  $request->product_discount;
 
@@ -99,13 +121,15 @@ class ProductController extends Controller
 
             $product->product_category    = $request->product_category;
 
+            $product->product_status      = $request->product_status;
+
             $product->save();
 
 
-            return redirect('/products')->with('sucess', 'Post Created Successfully');
+            return redirect('/products')->with('success', 'Product Created Successfully');
 
-
-    }
+            } 
+         }
 
     /**
      * Display the specified resource.
@@ -113,9 +137,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+
+        $mightAlsoLike = Product::where('id', '!=', $product->id )->mightAlsoLike()->get();
+
+        return view('pages.showproduct', compact(['product','mightAlsoLike']));
     }
 
     /**
@@ -139,23 +166,25 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-         $product = Product::find($id);
 
+    {    
+    
+        //Validate Updated Request::
 
-          $request->validate([
+        $request->validate([
 
             'product_name'        =>'required|max:50',
             'product_price'       =>'required|numeric',
             'product_description' =>'required|max:255',
             'product_colour'      =>'required',
-            'product_image'       =>'image|required',
+            'product_image'       =>'image',
             'product_discount'    =>'required',
+            'product_status'      =>'required',
             'product_category'    => 'required'
        ]);
 
 
-        //File Upload
+         //File Upload
 
         if ($request->hasFile('product_image')) {
             
@@ -171,14 +200,15 @@ class ProductController extends Controller
 
             $extension       = $request->file('product_image')->getClientOriginalExtension();
 
-
             //file name to store ::
 
             $fileNameToStore = $fileName.'-'.time().$extension;
 
             //Upload Image
 
-            $path = $request->file('product_image')->storeAs('/public/product_images',             $fileNameToStore);
+            $path = $request->file('product_image')->storeAs('/public/product_images',
+
+             $fileNameToStore);
 
         }else{
 
@@ -186,9 +216,21 @@ class ProductController extends Controller
         }
 
 
-        //Create a Post Istance and save to DB:
+        //Check if Product already exist in database::
 
-            $product = new Product();
+        $check_record = Product::where('product_name', $request->product_name)->first();
+
+            if ($check_record) {
+
+
+                return redirect()->back()->with('error','Product already exist in database');
+
+            } else {
+
+            //If the product does not exist then create new  PRODUCT::
+
+
+            $product = Product::findOrFail($id);
 
             $product->product_name        = $request->product_name;
 
@@ -196,19 +238,23 @@ class ProductController extends Controller
 
             $product->product_description = $request->product_description;
 
-            $product->product_colour     =  $request->product_colour;
+            $product->product_details     = $request->product_details;
 
-            $product->product_discount    =  $request->product_discount;
+            $product->product_colour      = $request->product_colour;
 
-            $product->product_image       =  $fileNameToStore;
+            $product->product_discount    = $request->product_discount;
+
+            $product->product_image       = $fileNameToStore;
 
             $product->product_category    = $request->product_category;
 
-            $product->save();
+            $product->product_status      = $request->product_status;
 
+            $product->update();
 
-        return redirect('/products')->with('success', 'The product has been updated successfully');
+             return redirect('/products')->with('success', 'Product Updated Successfully');
 
+            }
 
     }
 
@@ -220,8 +266,37 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id)->delete();
+        $product = Product::findOrFail($id);
 
-        return redirect('/products');
+        if ($product->product_image != 'noimage.jpg') {
+            
+            \Storage::delete('public/product_images/'.$product->product_image);
+
+        }
+
+        $product->delete();
+
+        return redirect('/products')->with('success', 'The '.$product->product_name.' has been deleted successfully');
     }
+
+
+     public function addToCart($id){
+
+                $product = Product::findOrFail($id);
+
+                $oldCart = Session::has('cart')? Session::get('cart'):null;
+
+                $cart    = new Cart ($oldCart);
+
+                $cart->add($product, $id);
+
+                Session::put('cart', $cart);
+
+                //dd(Session::get('cart'));
+
+                return redirect::to('/');
+
+            }
+
+
 }

@@ -21,7 +21,6 @@
     <!-- nouislider -->
     <link type="text/css" rel="stylesheet" href="asset2/css/nouislider.min.css"/>
 
-
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="asset2/css/font-awesome.min.css">
 
@@ -34,21 +33,125 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next {
+    right:30%;
+    margin-right: -10px;
+}
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .icon-next {
+    left:30%;
+    margin-left: -10px;
+}
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -10px;
+    font-size: 25px;
+    background: black;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+  line-height: 30px;
+}
+/*======= media queries in css =======*/
+
+/*////////////// XTRA SMALL DEVICES( mobile phones ) //////////////*/
+@media (min-width: 300px) and (max-width: 479px){  
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -10px;
+    font-size: 20px;
+    background: black;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 10px;
+}
+.carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next {
+    right:30%;
+    margin-right: -10px;
+}
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .icon-next {
+    left:30%;
+    margin-left: -10px;
+}
+  }
+
+/*////////////// TAB OR LARGE MOBILE PHONE //////////////*/
+@media (min-width: 768px) and (max-width: 991px){  
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -10px;
+    font-size: 20px;
+    background: black;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 10px;
+}
+.carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next {
+    right:30%;
+    margin-right: -10px;
+}
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .icon-next {
+    left:30%;
+    margin-left: -10px;
+}
+  }
+
+/*////////////// MEDIUM DEVICES LAPTOPS //////////////*/
+@media (min-width: 992px) and (max-width: 1199px){  
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -10px;
+    font-size: 20px;
+    background: black;
+    padding: 10px;
+    width:40px;
+    height:40px;
+    line-height: 10px;
+}
+.carousel-control .glyphicon-chevron-right, .fa-angle-right, .carousel-control .icon-next {
+    right:30%;
+    margin-right: -10px;
+}
+.carousel-control .glyphicon-chevron-left, .fa-angle-left, .carousel-control .icon-next {
+    left:30%;
+    margin-left: -10px;
+}
+  }
+</style>
 
     </head>
   <body>
     <!-- HEADER -->
-    <header>
+    <section>
+        <header>
       <!-- TOP HEADER -->
       <div id="top-header">
         <div class="container">
           <ul class="header-links pull-left">
             <li><a href="#"><i class="fa fa-phone"></i>+2348066490082</a></li>
             <li><a href="#"><i class="fa fa-envelope-o"></i> admin@oarinfotech.com</a></li>
-            <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+            <li><a href="#"><i class="fa fa-map-marker"></i>VSF 11, Bannex Plaza</a></li>
           </ul>
           <ul class="header-links pull-right">
-            <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+            <li><a href="/showlogin" class="btn btn-warning btn-sm" style="background-color: #fff; color: blue;">Sign Up<i class=""></i></a></li>
             <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
           </ul>
         </div>
@@ -65,7 +168,7 @@
             <div class="col-md-3">
               <div class="header-logo">
                 <a href="#" class="logo">
-                  <img src="./asset2/img/oarlogo.png" alt="">
+                  <img src="./asset2/img/reedited.png" alt="">
                 </a>
               </div>
             </div>
@@ -92,21 +195,21 @@
             <div class="col-md-3 clearfix">
               <div class="header-ctn">
                 <!-- Wishlist -->
-                <div>
+                <!-- <div>
                   <a href="#">
                     <i class="fa fa-heart-o"></i>
                     <span>Your Wishlist</span>
                     <div class="qty">2</div>
                   </a>
-                </div>
+                </div> -->
                 <!-- /Wishlist -->
 
                 <!-- Cart -->
                 <div class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <a href="/cart">
                     <i class="fa fa-shopping-cart"></i>
-                    <span>Your Cart</span>
-                    <div class="qty">3</div>
+                    <span>Your Bookings</span>
+                    <div class="qty">{{Session::has('cart')? Session::get('cart')->totalQty:0}}</div>
                   </a>
                   <div class="cart-dropdown">
                     <div class="cart-list">
@@ -162,6 +265,8 @@
       </div>
       <!-- /MAIN HEADER -->
     </header>
+    </section>
+    
     <!-- /HEADER -->
 
     <!-- NAVIGATION -->
@@ -173,12 +278,12 @@
           <!-- NAV -->
           <ul class="main-nav nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Hot Deals</a></li>
-            <li><a href="#">Store</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          <!-- /NAV -->
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/store">Store</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="#">Smartphones</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>          
         </div>
         <!-- /responsive-nav -->
       </div>
@@ -186,49 +291,14 @@
     </nav>
     <!-- /NAVIGATION -->
 
-          
-
+     
           @yield('content')
-  
 
-    <!-- NEWSLETTER -->
-    <div id="newsletter" class="section">
-      <!-- container -->
-      <div class="container">
-        <!-- row -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="newsletter">
-              <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-              <form>
-                <input class="input" type="email" placeholder="Enter Your Email">
-                <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-              </form>
-              <ul class="newsletter-follow">
-                <li>
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-pinterest"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- /row -->
-      </div>
-      <!-- /container -->
-    </div>
-    <!-- /NEWSLETTER -->
+
+
 
     <!-- FOOTER -->
-    <footer id="footer">
+    <footer id="footer" style="padding-top: 70px;">
       <!-- top footer -->
       <div class="section">
         <!-- container -->
@@ -237,7 +307,7 @@
           <div class="row">
             <div class="col-md-3 col-xs-6">
               <div class="footer">
-                <h3 class="footer-title">About Us</h3>
+                <h3 class="footer-title mt-5">About Us</h3>
                 <p>Oar Info-Tech focuses on your IT requirements so you can zero in on your business growth.</p>
                 <ul class="footer-links">
                   <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
@@ -268,9 +338,7 @@
                 <ul class="footer-links">
                   <li><a href="#">About Us</a></li>
                   <li><a href="#">Contact Us</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Orders and Returns</a></li>
-                  <li><a href="#">Terms & Conditions</a></li>
+                 
                 </ul>
               </div>
             </div>
@@ -280,10 +348,8 @@
                 <h3 class="footer-title">Service</h3>
                 <ul class="footer-links">
                   <li><a href="#">My Account</a></li>
-                  <li><a href="#">View Cart</a></li>
-                  <li><a href="#">Wishlist</a></li>
-                  <li><a href="#">Track My Order</a></li>
-                  <li><a href="#">Help</a></li>
+                  <li><a href="#">View Bookings</a></li>
+                  
                 </ul>
               </div>
             </div>
@@ -294,47 +360,21 @@
       </div>
       <!-- /top footer -->
 
-      <!-- bottom footer -->
-      <div id="bottom-footer" class="section">
-        <div class="container">
-          <!-- row -->
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <ul class="footer-payments">
-                <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-                <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-                <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-                <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-                <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-                <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-              </ul>
-              <span class="copyright">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </span>
-            </div>
-          </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-      </div>
-      <!-- /bottom footer -->
+     
     </footer>
     <!-- /FOOTER -->
 
-
-
     <!-- jQuery Plugins -->
-
-
     <script src="asset2/js/jquery.min.js"></script>
-    <script type="text/javascript" src="asset2/js/popper.min.js"></script>
+    <script src="asset2/js/jquery.min.js"></script>
     <script src="asset2/js/bootstrap.min.js"></script>
     <script src="asset2/js/slick.min.js"></script>
     <script src="asset2/js/nouislider.min.js"></script>
     <script src="asset2/js/jquery.zoom.min.js"></script>
     <script src="asset2/js/main.js"></script>
+
+
+    
 
   </body>
 </html>

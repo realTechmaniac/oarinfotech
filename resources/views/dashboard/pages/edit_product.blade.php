@@ -1,4 +1,6 @@
 @extends('layouts.dashboardApp')
+
+
             <!-- ============================================================== -->
             <!-- ADD PRODUCT PAGE CONTENT HERE -->
             <!-- ============================================================== -->
@@ -13,18 +15,22 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        @if($errors->any())
+                                        
+                                        @if(count($errors) > 0)
                                             <div class="alert alert-danger">
-                                                <ul>
-                                                    @foreach($errors->all() as $error)
+                                                <strong>Error: </strong>
+                                                    <ul>
+                                                        @foreach($errors->all() as $error)
+                                                        
+                                                            <li>{{$error}}</li>
 
-                                                        <li>{{ $error }}</li>
-
-                                                    @endforeach
-                                                </ul>
+                                                        @endforeach
+                                                    </ul>
                                             </div>
                                         @endif
-        
+
+                                    
+                                                
                                         <h4 class="card-title">EDIT PRODUCT</h4>
                                         <p class="card-title-desc">Edit  the product information below</p>
                                         
@@ -41,9 +47,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="example-search-input" class="col-md-2 col-form-label">Product Price</label>
+                                                <label for="example-search-input" class="col-md-2 col-form-label">Old Price</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="number" value="{{$product->product_price}}" id="example-search-input" name="product_price">
+                                                    <input class="form-control" type="number" value="{{$product->old_price}}" id="example-search-input" name="product_price">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="example-search-input" class="col-md-2 col-form-label">New Price</label>
+                                                <div class="col-md-10">
+                                                    <input class="form-control" type="number" value="{{$product->new_price}}" id="example-search-input" name="product_price">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -62,18 +74,17 @@
                                             
                                             <div class="form-group row">
                                                 <label for="example-month-input" class="col-md-2 col-form-label">Product Description</label>
-                                                <div class="col-md-10">
-                                                    <input class="form-control" type="text" value="{{$product->product_description}}" id="example-month-input" name="product_description">
+                                               <div class="col-md-10">
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="product_description">
+                                                        {{$product->product_description}}
+                                                     </textarea> 
                                                 </div>
                                             </div>
 
                                              <div class="form-group row">
                                                 <label for="example-date-input" class="col-md-2 col-form-label">Product Image</label>
                                                 <div class="col-md-10">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="customFile" name="product_image" value="">
-                                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                                    </div>
+                                                    <input type="file" name="product_image" value="{{asset('storage/$product->product_image')}}">
                                                 </div>
                                             </div>
 
@@ -85,6 +96,16 @@
                                                     <option value="phone">Phone</option>
                                                     <option value="laptop accessories">Laptop Accessories</option>
                                                     <option value="phone accessories">Phone Accessories</option>    
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                             <div class="form-group row">
+                                                <label class="col-md-2 col-form-label">Product Status</label>
+                                                <div class="col-md-10">
+                                                    <select class="form-control" name="product_status">
+                                                    <option value="In Stock">In Stock</option>
+                                                    <option value="Sold Out">Sold Out</option>   
                                                     </select>
                                                 </div>
                                             </div>

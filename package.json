@@ -22,5 +22,11 @@
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.5.4",
+        "appjs": "0.0.20",
+        "appjs-win32": "0.0.19",
+        "popper.js": "^1.16.1"
     }
 }

@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
-                                    <h4 class="mb-0 font-size-18">Dashboard</h4>
+                                    <h4 class="mb-0 font-size-18">Admin Dashboard</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
@@ -55,7 +55,7 @@
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <p class="text-muted font-weight-medium">Total Sales</p>
-                                                        <h4 class="mb-0">$35, 723</h4>
+                                                        <h4 class="mb-0"><span>&#8358;</span>35,000</h4>
                                                     </div>
 
                                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -72,13 +72,13 @@
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Total Profit</p>
-                                                        <h4 class="mb-0">$20, 723</h4>
+                                                        <p class="text-muted font-weight-medium">Total Users</p>
+                                                        <h4 class="mb-0"><span>&#8358;</span>20,000</h4>
                                                     </div>
 
                                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
                                                         <span class="avatar-title rounded-circle bg-primary">
-                                                            <i class="bx bx-archive-in font-size-24"></i>
+                                                            <i class="bx bx-user font-size-24"></i>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -360,11 +360,11 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Skote.
+                                <script>document.write(new Date().getFullYear())</script> © OarInfotech.
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-right d-none d-sm-block">
-                                    Design & Develop by Themesbrand
+                                    
                                 </div>
                             </div>
                         </div>

@@ -13,8 +13,18 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        @if($errors->any())
+                                        @if(Session::has('error'))
+
                                             <div class="alert alert-danger">
+                                                
+                                                {{Session::get('error')}}
+                                                
+                                            </div>
+
+                                        @endif
+
+                                        @if($errors->any())
+                                            <div class="alert alert danger">
                                                 <ul>
                                                     @foreach($errors->all() as $error)
 
@@ -33,15 +43,22 @@
                                             @csrf
                                                 
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-md-2 col-form-label">Product Name</label>
+                                                <label for="example-text-input" class="col-md-2 col-form-label" >Product Name</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="text" value="{{old('product_name')}}" id="example-text-input" name="product_name">
+                                                    <input class="form-control {{$errors->has('product_name') ? 'alert-danger' : '' }} " type="text" value="{{old('product_name')}}" id="example-text-input" name="product_name">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="example-search-input" class="col-md-2 col-form-label">Product Price</label>
+                                                <label for="example-search-input" class="col-md-2 col-form-label">Old Product Price</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="number" value="{{old('product_price')}}" id="example-search-input" name="product_price">
+                                                    <input class="form-control" type="text" value="{{old('old_price')}}" id="example-search-input" name="old_price">
+                                                </div>
+                                            </div>
+
+                                             <div class="form-group row">
+                                                <label for="example-search-input" class="col-md-2 col-form-label">New Product Price</label>
+                                                <div class="col-md-10">
+                                                    <input class="form-control" type="text" value="{{old('new_price')}}" id="example-search-input" name="new_price">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -57,21 +74,29 @@
                                                     <input class="form-control" type="text" value="{{old('product_colour')}}" id="example-search-input" name="product_colour">
                                                 </div>
                                             </div>
-                                            
-                                            <div class="form-group row">
-                                                <label for="example-month-input" class="col-md-2 col-form-label">Product Description</label>
-                                                <div class="col-md-10">
-                                                    <input class="form-control" type="text" value="{{old('product_description')}}" id="example-month-input" name="product_description">
-                                                </div>
-                                            </div>
 
                                              <div class="form-group row">
-                                                <label for="example-date-input" class="col-md-2 col-form-label">Product Image</label>
+                                                <label for="example-search-input" class="col-md-2 col-form-label">Product Description</label>
                                                 <div class="col-md-10">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="customFile" name="product_image" value="{{old('product_image')}}">
-                                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                                    </div>
+                                                    <input class="form-control" type="text" value="{{old('product_description')}}" id="example-search-input" name="product_description">
+                                                </div>
+                                            </div>
+                                
+                                            <div class="form-group row">
+                                                <label for="example-date-input" class="col-md-2 col-form-label">Product Details</label>
+                                               
+                                                <div class="col-md-10">
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="product_details">
+                                                         {{old('product_details')}}
+                                                     </textarea> 
+                                                </div>
+                                            </div>
+                                
+                                             <div class="form-group row">
+                                                <label for="example-date-input" class="col-md-2 col-form-label">Product Image</label>
+                                               
+                                                <div class="col-md-10">
+                                                    <input type="file" name="product_image" value="{{old('product_image')}}">
                                                 </div>
                                             </div>
 
@@ -79,10 +104,20 @@
                                                 <label class="col-md-2 col-form-label">Product Categories</label>
                                                 <div class="col-md-10">
                                                     <select class="form-control" name="product_category">
-                                                    <option value="laptop">Laptop</option>
-                                                    <option value="phone">Phone</option>
-                                                    <option value="laptop accessories">Laptop Accessories</option>
-                                                    <option value="phone accessories">Phone Accessories</option>    
+                                                    @foreach($categories as $category)
+                                                        <option value="{{strtolower($category->category_name)}}">{{$category->category_name}}</option>  
+                                                    @endforeach  
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-2 col-form-label">Product Status</label>
+                                                <div class="col-md-10">
+                                                    <select class="form-control" name="product_status">
+                                                    <option value="In Stock">In Stock</option>
+                                                    <option value="Sold Out">Sold Out</option>   
                                                     </select>
                                                 </div>
                                             </div>
