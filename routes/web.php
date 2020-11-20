@@ -73,11 +73,9 @@ Route::post('/categories/{category}/products', 'ProductCategoryController@store'
 
 Route::get('/add-to-cart/{id}','ProductController@addToCart');
 
-Route::get('/checkout','PagesController@showCheckOut')->middleware('auth');
 
 //GUEST CHECK OUT::
 
-Route::get('/checkout','PagesController@showCheckOut')->middleware('auth');
 
 Route::get('/profile','PagesController@showProfile');
 
@@ -103,7 +101,6 @@ Route::post('/saveaccount','ClientController@saveaccount');
 
 Route::post('/accessaccount','ClientController@accessaccount');
 
-Route::get('/logout', 'ClientController@logout');
 
 Route::get('/users', 'ClientController@showAllUsers');
 
@@ -119,8 +116,6 @@ Route::resource('sliders','SliderController');
 
 Route::get('delete_slider{id}', 'SliderController@deleteSlider');
 
-Route::get('/userdashboard', 'PagesController@showUserDashboard')->middleware('auth');
-
 Route::get('/admindashboard', 'PagesController@admin');
 
 Auth::routes();
@@ -132,11 +127,17 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-//USER ROUTES::
+// ROUTES WITH AUTH MIDDLEWARE::--->
 
 Route::middleware('auth')->group( function(){
 
-	Route::get('/userprofile', 'UserController@edit')->name('user.edit')->middleware('auth');
+	Route::get('/userprofile', 'UserController@edit')->name('user.edit');
+
+	Route::patch('/userprofile', 'UserController@update')->name('user.update');
+
+	Route::get('/userdashboard', 'PagesController@showUserDashboard');
+
+	Route::get('/checkout','PagesController@showCheckOut');
 
 });
 

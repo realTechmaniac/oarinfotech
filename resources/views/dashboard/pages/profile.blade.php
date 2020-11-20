@@ -14,13 +14,6 @@
                                 <div class="page-title-box d-flex align-items-center justify-content-between">
                                     <h4 class="mb-0 font-size-18">USER PROFILE</h4>
 
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                            <li class="breadcrumb-item active">Form Advanced</li>
-                                        </ol>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -34,14 +27,18 @@
                                         <h4 class="card-title"></h4>
                                         <p class="card-title-desc">User Profile Details</p>
         
-                                        <form> 
+                                        <form method="POST" action="{{route('user.update')}}"> 
+
+                                            @csrf
+
+                                            @method('PATCH')
 
                                         	<div class="row">
 		                                        <div class="col-md-12">
 		                                        	<div class="form-group row">
 					                                     <label for="example-text-input" class="col-md-2 col-form-label">Full Name</label>
 			                                            <div class="col-md-10">
-			                                                <input class="form-control" type="text" value="Ayomide Adebayo" id="example-text-input">
+			                                                <input class="form-control" type="text" value="{{old('name', $user->name)}}" id="example-text-input" name="name">
 			                                            </div>
 		                                       		 </div>
                                         		</div>
@@ -53,7 +50,7 @@
 		                                        	<div class="form-group row">
 					                                     <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
 			                                            <div class="col-md-10">
-			                                                <input class="form-control" type="Email" value="ayomide.adebayo19@gmail.com" id="example-text-input">
+			                                                <input class="form-control" type="Email" value="{{old('name', $user->email)}}" id="example-text-input" name="email">
 			                                            </div>
 		                                       		 </div>
                                         		</div>
@@ -65,7 +62,7 @@
 		                                        	<div class="form-group row">
 					                                     <label for="example-text-input" class="col-md-2 col-form-label">Phone Number</label>
 			                                            <div class="col-md-10">
-			                                                <input class="form-control" type="Number" value="08066490082" id="example-text-input">
+			                                                <input class="form-control" type="Number" value="{{old('name', $user->phone_number)}}" id="example-text-input">
 			                                            </div>
 		                                       		 </div>
                                         		</div>
@@ -73,19 +70,35 @@
                                         	</div>
 
 
-                                        	<div class="row">
-		                                        <div class="col-md-12">
-		                                        	<div class="form-group row">
-					                                     <label for="example-text-input" class="col-md-2 col-form-label">Password</label>
-			                                            <div class="col-md-10">
-			                                                <button type="button" class="btn btn-primary waves-effect waves-light">
-				                                                <i class="bx bx-lock-alt  font-size-16 align-middle mr-2"></i> Reset Password
-				                                            </button>
-			                                            </div>
-		                                       		 </div>
-                                        		</div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                         <label for="example-text-input" class="col-md-2 col-form-label">Password</label>
+                                                        <div class="col-md-10">
+                                                            <input class="form-control" type="Email" value="" id="example-text-input">
+                                                        </div>
+                                                     </div>
+                                                </div>
 
-                                        	</div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                         <label for="example-text-input" class="col-md-2 col-form-label">Confirm Password</label>
+                                                        <div class="col-md-10">
+                                                            <input class="form-control" type="Email" value="" id="example-text-input">
+                                                        </div>
+                                                     </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="text-center">
+                                                
+                                                <button class="btn btn-primary" type="submit">UPDATE PROFILE</button>
+                                            </div>
                                       
                                         </form>
         

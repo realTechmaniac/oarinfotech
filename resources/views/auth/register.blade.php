@@ -79,6 +79,19 @@
                                                 </span>
                                             @enderror        
                                         </div>
+
+
+                                        <div class="form-group">
+                                            <label for="useremail">Phone Number</label>
+                                            <input id="email" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="" placeholder="Enter Phone Number">
+
+                                            @error('phone_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror        
+                                        </div>
+            
             
                 
                                         <div class="form-group">
