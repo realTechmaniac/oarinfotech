@@ -13,12 +13,13 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints(); 
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->integer('role_id')->unsigned()->nullable();
+            $table->id()->unique();
+            $table->integer('role_id')->default(0);
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone_number')->nullable();
+            $table->string('phonenumber');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

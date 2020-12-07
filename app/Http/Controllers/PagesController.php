@@ -6,7 +6,10 @@ use DB;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Slider;
-use App\Cart;
+use App\Category;
+use App\User;
+use App\Order;
+use Cart;
 use Session;
 
 class PagesController extends Controller
@@ -21,7 +24,7 @@ class PagesController extends Controller
 
         $latest_products   = Product::orderBy('created_at', 'DESC')->take(4)->get();
 
-        $sliders  = Slider::all();
+        $sliders           = Slider::where('slider_status', 1)->get();
 
     	return view('pages.index', compact(['products','sliders','featured_products','latest_products']));
     }
@@ -42,11 +45,16 @@ class PagesController extends Controller
 
     public function shop(){
 
-        $products = Product::all();
+        $categories = Category::all();
 
-        return view('pages.shop', compact('products'));
+        $products   = Product::all();
+
+        return view('pages.shop', compact(['products','categories']));
 
     }
+
+
+    
 
     public function showLaptops(){
 
@@ -90,12 +98,21 @@ class PagesController extends Controller
 
     public function admin(){
 
-        $products = Product::all();
+        $latest_orders  = Order::orderBy('created_at', 'desc')->limit(5)->get();
 
-    	return view('dashboard.pages.admin-index',compact('products'));
+        $orders         = Order::all();
+
+        $products       = Product::all();
+
+        $users          = User::all();
+
+    	return view('dashboard.pages.admin-index',compact(['products','users','orders', 'latest_orders']));
     }
 
+
+
     public function showProduct($id){
+
 
         $product       = Product::findOrFail($id);
 
@@ -124,11 +141,14 @@ class PagesController extends Controller
 
     public function showUserDashboard(){
 
-        return view('dashboard.pages.user_index');
+        $orders   = Order::where('id', auth()->user()->id)->take(4)->get();
+                
+        return view('dashboard.pages.user_index')->withOrders($orders);
     }
 
     public function showCheckOut(){
 
+        
         return view('pages.checkout');
     }
 
@@ -138,6 +158,7 @@ class PagesController extends Controller
 
     public function showProfile(){
 
+    
         return view('dashboard.pages.profile');
     }
 
@@ -147,5 +168,18 @@ class PagesController extends Controller
          return view('dashboard.pages.book'); 
     }
 
+
+    public function showMessage(){
+
+        return view('pages.booksucess');
+    }
+
+
+    public function listUsers(){
+
+        $users = User::all();
+
+        return view('dashboard.pages.listusers', compact('users'));
+    }
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
 
 class CategoriesController extends Controller
 {
@@ -150,5 +151,16 @@ class CategoriesController extends Controller
 
         return redirect('/categories')->with('success', 'The'.$category->category_name.' category has been deleted successfully ');
       
+    }
+
+
+    public function countProducts($catgoryname){
+
+
+     $result =   count(Product::where('product_category', $catgoryname)->get());
+
+
+     return $result;
+     
     }
 }

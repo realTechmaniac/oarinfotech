@@ -211,18 +211,25 @@
     <!-- Placed js at the end of the document so the pages load faster -->
 
     <!-- jquery latest version -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).load(function() 
+{          
+        $("#preloaders").fadeOut(2000);
+   });
+
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
     <script src="{{asset('asset/js/vendor/jquery-1.12.0.min.js')}}"></script>
     <!-- Bootstrap framework js -->
-    <script src="{{asset('asset/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('asset/js/bootstrap.min.js')}}" type="text/javascript"></script>
     <!-- All js plugins included in this file. -->
-    <script src="{{asset('asset/js/plugins.js')}}"></script>
-    <script src="{{asset('asset/js/slick.min.js')}}"></script>
-    <script src="{{asset('asset/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('asset/js/plugins.js')}}" type="text/javascript"></script>
+    <script src="{{asset('asset/js/slick.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('asset/js/owl.carousel.min.js')}}" type="text/javascript"></script>
     <!-- Waypoints.min.js. -->
-    <script src="{{asset('asset/js/waypoints.min.js')}}"></script>
+    <script src="{{asset('asset/js/waypoints.min.js')}}" type="text/javascript"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
-    <script src="{{asset('asset/js/main.js')}}"></script>
+    <script src="{{asset('asset/js/main.js')}}" type="text/javascript"></script>
 
 
 </body>

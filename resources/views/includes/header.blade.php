@@ -28,21 +28,20 @@
     <link rel="stylesheet" href="{{asset('asset/css/responsive.css')}}">
     <!-- User style -->
     <link rel="stylesheet" href="{{asset('asset/css/custom.css')}}">
-
+    <link rel="stylesheet" type="text/css" href="asset/preloader">
 
     <!-- Modernizr JS -->
     <script src="{{asset('asset/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->  
-
+     
+    
     <!-- Body main wrapper start -->
     <div class="wrapper fixed__footer">
         <!-- Start Header Style -->
-        <header id="header" class="htc-header header--3 bg__white">
+        <header id="header" class="htc-header header--3 bg__white" style="background-color: #F6F6F8;  height:100px;">
             <!-- Start Mainmenu Area -->
             <div id="sticky-header-with-topbar" class="mainmenu__area sticky__header">
                 <div class="container">
@@ -95,10 +94,13 @@
                                     <li><a href="/register"><span><strong>REGISTER</strong></span></a></li>
                                 @else
 
-                                <li>
-                                    <a href="/userdashboard">MY ACCOUNT</a>
+                                <li class="hidden-xs">
+
+                                    <a href="/userdashboard">
+                                    ACCOUNT
+                                    </a>
                                 </li>
-                                <li>
+                                <li class="hidden-xs">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -112,9 +114,13 @@
                                 </form>
 
                                 @endguest
-                                <li><a href=""></a> <span class="ti-shopping-cart">@if(Cart::instance('default')->count() > 0)<sup class="badge badge-success" style="background-color: blue; font-weight: bolder;"><strong>{{Cart::instance('default')->count()}} </strong></sup></span>@endif
+
+                                <li class="hidden-sm"><a href="/cart">CART</a> <span class="">@if(Cart::instance('default')->count() > 0)<sup class="badge badge-success" style="background-color: blue; font-weight: bolder;"><strong>{{Cart::instance('default')->count()}} </strong></sup></span>
+
                                 </li>
-                                <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
+                                @endif
+                                
+                                <li class="search search__open hidden-xs" type="submit"><span class="ti-search"></span></li>
                                 
                             </ul>
                         </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProductDetailsToProducts extends Migration
+class AddProductDetailsToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,7 @@ class AddProductDetailsToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             
-              $table->string('product_details')->nullable();
-
+            $table->longText('product_details');
         });
     }
 

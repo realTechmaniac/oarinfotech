@@ -56,6 +56,7 @@
                                 
                                 <div class="p-2">
                                     <form method="POST" class="form-horizontal" action="{{ route('register') }}">
+
                                         @csrf
 
                                         <div class="form-group">
@@ -82,10 +83,10 @@
 
 
                                         <div class="form-group">
-                                            <label for="useremail">Phone Number</label>
-                                            <input id="email" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="" placeholder="Enter Phone Number">
+                                            <label for="phonenumber">Phone Number</label>
+                                            <input id="phonenumber" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phonenumber" value="{{ old('phonenumber') }}" required autocomplete="" placeholder="Enter Phone Number">
 
-                                            @error('phone_number')
+                                            @error('phonenumber')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

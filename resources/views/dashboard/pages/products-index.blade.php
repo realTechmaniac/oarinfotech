@@ -49,8 +49,10 @@
                                              
                                                 <td>{{$key+1}}</td>
                                                 <td>{{$product->product_name}}</td>
-                                                <td>{{$product->old_price}}</td>
-                                                <td>{{$product->new_price}}</td>
+                                                <td>{{$product->addThousand($product->old_price)}}</td>
+                                                <td>
+                                                {{$product->addThousand($product->new_price)}}
+                                                </td>
                                                 <!-- <td>{{$product->product_description}}</td> -->
                                                 <td>{{$product->product_category}}</td>
                                                 <td>{{$product->product_status}}</td>

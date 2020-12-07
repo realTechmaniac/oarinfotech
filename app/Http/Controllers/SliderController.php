@@ -114,7 +114,7 @@ class SliderController extends Controller
 
         $slider->update();
 
-        return back();
+        return redirect('/sliders')->with('success', 'Slider has been deactivated successfully');
 
     }
 
@@ -127,8 +127,7 @@ class SliderController extends Controller
 
         $slider->update();
 
-        return back();
-
+        return redirect('/sliders')->with('success', 'Slider has been activated successfully');
     }
 
 

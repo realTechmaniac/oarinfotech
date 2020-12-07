@@ -43,7 +43,6 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-
         //Search to see if the Item Exist::-->
 
             $duplicates = Cart::search(function ($cartItem, $rowId) use($request) {
@@ -55,8 +54,7 @@ class CartController extends Controller
                 
                 return redirect('/cart')->with('success_message','Item is already in your Cart');
             }
-
-       //Method to add the product to Cart::  
+               //Method to add the product to Cart::  
        Cart::add($request->id, $request->name, 1 , $request->price, ['size' => 'large', 'image' => $request->image ] )
             ->associate('App\Product');
 

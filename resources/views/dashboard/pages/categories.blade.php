@@ -48,7 +48,7 @@
                                                 <td>{{$key+1}}</td>
                                                 <td>{{$category->category_name}}</td>
                                                 <td>{{$category->category_description}}</td>
-                                                <td>{{$category->category_quantity}}</td>
+                                                <td>{{$category->countProducts($category->category_name)}}</td>
                                                 <td>
                                                     <div class="row">
                                                         

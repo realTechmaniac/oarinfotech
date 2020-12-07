@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phonenumber',
     ];
 
     /**
@@ -37,19 +37,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
     public function role(){
 
         return $this->hasOne(Role::class);
     }
 
-    public function isAdmin(){
 
-        if($this->role->name == 'administrator'){
 
-            return true;
+    public function checkUser(){
+
+        $user = auth()->user();
+
+        if ($user->role_id === 1 ) {
+            
+            return redirect('/admindashoard');
         }
 
-        return false;
-        
+        return redirect('/userdashboard');
+    }
+
+
+    public function orders(){
+
+        return $this->hasMany('App\Order');
+    }
+
+    
+    public function changeDateFormat($date){
+
+        return  date('m/d/Y', strtotime($date));
     }
 }

@@ -204,7 +204,7 @@
 
                                         @foreach(Cart::content() as $item)
 
-                                     
+                        
                                         <tr>
                                                
                                                 <td class="product-thumbnail"><a href="#"><img src="{{$item->options->image}}" alt="product img" /></a></td>
@@ -213,6 +213,7 @@
                                                 <td class="product-quantity"><input type="number" value="{{$item->qty}}" class="quantity" data-id="{{$item->rowId}}" /></td>
                                                 <td class="product-subtotal">{{$item->subtotal()}}</td>
 
+                                                
                                                 <td>
                                                     <form method="POST" action="{{route('cart.destroy', $item->rowId )}}">
                                                         
@@ -220,17 +221,11 @@
 
                                                         @method('DELETE')
 
-                                                        <button type="submit">Remove</button>
+                                                        <button type="submit">X</button>
 
                                                     </form>
 
-                                                    <form method="POST" action="{{route('cart.switch', $item->rowId )}}">
-                                                        
-                                                        @csrf
-
-                                                        <button type="submit">Save for later</button>
-
-                                                    </form>
+                                                   
                                                 </td>
                                          </tr>
                                         @endforeach
@@ -285,7 +280,7 @@
                                             </tbody>
                                         </table>
                                         <div class="wc-proceed-to-checkout">
-                                            <a href="/checkout">Book</a>
+                                            <a href="/book">Book</a>
                                         </div>
                                     </div>
                                 </div>
@@ -305,73 +300,6 @@
                     </div>
                 @endif
 
-                @if(Cart::instance('saveForLater')->count() > 0 )
-
-                <h2 style="padding-bottom: 15px; ">{{Cart::instance('saveForLater')->count()}}Item(s) saved for later</h2>
-
-                <h2 style="padding-bottom: 15px; ">Items Saved for Later</h2>
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <form action="#">               
-                            <div class="table-content table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="product-thumbnail">Image</th>
-                                            <th class="product-name">Product</th>
-                                            <th class="product-price">Price</th>
-                                            <th class="product-quantity">Quantity</th>
-                                            <th class="product-subtotal">Total</th>
-                                            <th class="product-remove">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach(Cart::instance('saveForLater')->content() as $val)
-
-                                        <tr>  
-                                               
-                                                <td class="product-thumbnail"><a href="#"><img src="{{$val->options->image}}" alt="product img" /></a></td>
-                                                <td class="product-name"><a href="{{route('products.show', $val->id)}}">{{$val->name}}</a></td>
-                                                <td class="product-price"><span class="amount">{{$val->price}}</span></td>
-                                                <td><input type="number" value="1" id="" /></td>
-                                                <td class="product-subtotal">£165.00</td>
-
-                                                <td>
-                                                    <form method="POST" action="{{route('cart.destroy', $val->rowId )}}">
-                                                        
-                                                        @csrf
-
-                                                        @method('DELETE')
-
-                                                        <button type="submit">Remove</button>
-
-                                                    </form>
-
-                                                    <form method="POST" action="{{route('cart.switch', $val->rowId )}}">
-                                                        
-                                                        @csrf
-
-                                                        <button type="submit">Save for later</button>
-
-                                                    </form>
-                                                </td>
-                                         </tr>
-                                        @endforeach
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                        </form> 
-                    </div>
-                </div>
-
-                @else
-
-                    <h3>You have no item(s) saved for later! </h3>
-
-                @endif
             </div>
 
 

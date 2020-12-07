@@ -37,7 +37,7 @@
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <p class="text-muted font-weight-medium">Bookings</p>
-                                                        <h4 class="mb-0">5</h4>
+                                                        <h4 class="mb-0">{{count($orders)}}</h4>
                                                     </div>
 
                                                     <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
@@ -96,60 +96,54 @@
 
                         <div class="row">
                             <div class="col-lg-12">
+                                
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title mb-4">Latest Transaction</h4>
+                                        <h4 class="card-title mb-4">Latest Transactions</h4>
                                         <div class="table-responsive">
                                             <table class="table table-centered table-nowrap mb-0">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th style="width: 20px;">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                                <label class="custom-control-label" for="customCheck1">&nbsp;</label>
-                                                            </div>
-                                                        </th>
-                                                        <th>Transaction ID</th>
+                                                        
+
                                                         <th>Date</th>
-                                                        <th>Item</th>
-                                                        <th>Price</th>
-                                                        <th>Ouantity</th>
-                                                        <th>Total</th>
-                                                        <th>Amount Paid</th>
+                                                        <th>Expiration Date</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Amount to pay</th>
+                                                        <th>Balance</th>
                                                         <th>Payment Status</th>
                                                         <th>View Details</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 
+                                                @foreach($orders as $order)
                                                     <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                                <label class="custom-control-label" for="customCheck4">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2542</a> </td>
-                                                        <td>
-                                                            06 Oct, 2019
-                                                        </td>
-                                                        <td>Macbook Pro</td>
                                                         
                                                         <td>
-                                                            500,000
+                                                           {{$order->changeDateFormat($order->created_at)}}
                                                         </td>
                                                         <td>
-                                                            <i class=" mr-1"></i>2
+                                                          {{$order->showExpiration($order->created_at)}}
                                                         </td>
                                                         <td>
-                                                            1,000,000
+                                                            {{$order->total_amount}}
                                                         </td>
                                                         <td>
-                                                            800,000
+                                                            <i class=" mr-1"></i>{{$order->amount_to_pay}}
                                                         </td>
+                                                        <td>{{$order->getBalance($order->total_amount, $order->amount_to_pay)}}</td>
+                                                        @if($order->is_approved === 0)
                                                         <td>
                                                            <span class="badge badge-pill badge-soft-danger font-size-12">Pending</span>
                                                         </td>
+                                                        @else
+
+                                                        <td>
+                                                           <span class="badge badge-pill badge-soft-primary font-size-12">completed</span>
+                                                        </td>
+
+                                                        @endif
                                                         
                                                         <td>
                                                             <!-- Button trigger modal -->
@@ -158,43 +152,8 @@
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                    
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                                <label class="custom-control-label" for="customCheck4">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2542</a> </td>
-                                                        <td>
-                                                            06 Oct, 2019
-                                                        </td>
-                                                        <td>Macbook Pro</td>
-                                                        
-                                                        <td>
-                                                            500,000
-                                                        </td>
-                                                        <td>
-                                                            <i class=" mr-1"></i>2
-                                                        </td>
-                                                        <td>
-                                                            1,000,000
-                                                        </td>
-                                                        <td>
-                                                            800,000
-                                                        </td>
-                                                        <td>
-                                                           <span class="badge badge-pill badge-soft-danger font-size-12">Pending</span>
-                                                        </td>
-                                                        
-                                                        <td>
-                                                            <!-- Button trigger modal -->
-                                                            <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-toggle="modal" data-target=".exampleModal">
-                                                                View Details
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -203,6 +162,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- end row -->
                         <!-- end row -->
                     </div>
                     <!-- container-fluid -->

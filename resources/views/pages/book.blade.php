@@ -81,7 +81,7 @@
                 </div>
             </div>
             <!-- End Offset MEnu -->
-            <!-- Start Cart Panel -->
+            <!-- Start cart Panel -->
             <div class="shopping__cart">
                 <div class="shopping__cart__inner">
                     <div class="offsetmenu__close__btn">
@@ -162,26 +162,55 @@
                             <!-- Start Checkbox Area -->
                             <div class="checkout-form">
                                 <h2 class="section-title-3">Booking details</h2>
-                                    
+
+                                @if(session()->has('success_message'))
+
+                                    <div class="alert alert-success">
+                                        
+                                        {{session()->get('success_message')}}
+
+                                    </div>
+
+                                @endif
+                           
+                                @if($errors->any()) 
+
+                                    @foreach($errors->all() as $error)
+
+                                    <div class="alert alert-danger">
+
+                                         {{$error}}
+  
+                                    </div>
+                                       
+                                    @endforeach
+
+                                @endif
                                 <div class="checkout-form-inner">
+                                 <form method="POST" action="/order">
+
+                                    @csrf
+
                                     <div class="single-checkout-box">
-                                        <input type="text" placeholder="First Name*">
-                                        <input type="text" placeholder="Last Name*">
+                                        <input type="text" placeholder="Full Name*" value="{{auth()->user()->name}}" name="name">
+                                         <input type="email" placeholder="Email*" value="{{auth()->user()->email}}" name="email">
                                     </div>
                                     <div class="single-checkout-box">
-                                        <input type="email" placeholder="Email*">
-                                        <input type="text" placeholder="Phone*">
+                                        <p>Total expected amount to pay:</p>
+                                        <input type="text" placeholder="Total Bookings*" value="{{Cart::total()}}" name="total_amount">
+                                        <input type="text" placeholder="Phone*" value="{{auth()->user()->phonenumber}}" name="phonenumber">
                                     </div>
                                      <div class="single-checkout-box">
-                                        <input type="email" placeholder="Amount to Pay*">
-                                        <input type="text" placeholder="Total Bookings*">
+                                        <p>Enter amount to pay here</p>
+                                        <input type="number" placeholder="Amount to Pay*" name="amount_to_pay" value="{{old('amount_to_pay')}}">           
                                     </div>
                                     
                                     <div class="single-checkout-box checkbox">
-                                       <div class="buttons-cart">
-                                    
-                                        <a href="/shop">SAVE</a>
-                                    </div>
+                                       <div class="buttons-cart">                                        
+                                        <button type="submit" class="buttons-cart">SAVE</button>
+                                        
+                                        </div>
+                                </form>
                                     </div>
                                 </div>
                             </div>

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 //Home Page Route::
 
+
+
 Route::get('/', 'PagesController@index')->name('home');
 
 //About Page Route::
@@ -85,8 +87,6 @@ Auth::routes();
 
 Route::get('/home', 'PagesController@index')->name('home');
 
-Route::get('/book', 'PagesController@book');  
-
 Route::get('/showlogin', 'ClientController@showLogin')->name('showlogin');
 
 Route::get('/showregister', 'ClientController@showRegister')->name('showregister');
@@ -116,7 +116,6 @@ Route::resource('sliders','SliderController');
 
 Route::get('delete_slider{id}', 'SliderController@deleteSlider');
 
-Route::get('/admindashboard', 'PagesController@admin');
 
 Auth::routes();
 
@@ -126,8 +125,32 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/orders', 'OrderController@index');
 
-// ROUTES WITH AUTH MIDDLEWARE::--->
+Route::patch('/approveorder/{id}', 'OrderController@approveOrder');
+
+Route::patch('/dissapproveorder/{id}', 'OrderController@dissaproveOrder');
+
+Route::delete('/deleteorder/{id}', 'OrderController@deleteOrder');
+
+//All admin Login Routes stated below::
+
+Route::prefix('admin')->group(function(){
+
+	Route::get('/', 'AdminController@index')->name('admin.dashboard');
+
+	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+
+	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+
+	
+});
+
+Route::get('/allusersorders', 'AdminController@showOrders');
+
+Route::get('/listusers', 'PagesController@listUsers');
+
+//ROUTES WITH AUTH MIDDLEWARE::--->
 
 Route::middleware('auth')->group( function(){
 
@@ -137,7 +160,12 @@ Route::middleware('auth')->group( function(){
 
 	Route::get('/userdashboard', 'PagesController@showUserDashboard');
 
-	Route::get('/checkout','PagesController@showCheckOut');
+	Route::get('/book','BookingController@index');
+
+	Route::post('/order','OrderController@store');
+
+	Route::get('/booksuccess', 'PagesController@showMessage');
 
 });
 
+Route::get('/search','ShopController@search')->name('search');

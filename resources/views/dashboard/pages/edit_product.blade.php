@@ -29,7 +29,15 @@
                                             </div>
                                         @endif
 
-                                    
+                                        @if(session()->has('success'))
+
+                                            <div class="alert alert-success">
+                                                
+                                                    {{session()->get('success')}}
+                                            </div>
+
+
+                                        @endif
                                                 
                                         <h4 class="card-title">EDIT PRODUCT</h4>
                                         <p class="card-title-desc">Edit  the product information below</p>
@@ -75,12 +83,19 @@
                                             <div class="form-group row">
                                                 <label for="example-month-input" class="col-md-2 col-form-label">Product Description</label>
                                                <div class="col-md-10">
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="product_description">
-                                                        {{$product->product_description}}
+                                                    <input class="form-control" type="text" value="{{$product->product_details}}" id="example-search-input" name="product_description">
                                                      </textarea> 
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row">
+                                                <label for="example-month-input" class="col-md-2 col-form-label">Details</label>
+                                               <div class="col-md-10">
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="product_details">
+                                                        {{$product->product_details}}
+                                                     </textarea> 
+                                                </div>
+                                            </div>
                                              <div class="form-group row">
                                                 <label for="example-date-input" class="col-md-2 col-form-label">Product Image</label>
                                                 <div class="col-md-10">

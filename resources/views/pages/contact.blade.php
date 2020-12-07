@@ -229,7 +229,7 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 smt-30 xmt-30">
                         <div class="map-contacts">
-                            <div id="googleMap"></div>
+                           <img src="asset/images/bg/contact-show.jpg">
                         </div>
                     </div>
                 </div>
@@ -462,7 +462,7 @@
     <script src="js/owl.carousel.min.js"></script>
 
     <!-- Google Map js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo"></script>
+    
     <script>
         // When the window has finished loading create our google map below
         google.maps.event.addDomListener(window, 'load', init);

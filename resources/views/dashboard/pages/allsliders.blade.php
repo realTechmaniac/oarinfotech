@@ -31,7 +31,7 @@
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Slider Description01</th>
-                                                <th>Slider Description02</th>
+                                                <th>Slider Link</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -86,7 +86,7 @@
                                                             @if($slider->slider_status === 1)
                                                                                                                  
                                                             <div class="col-md-2 mr-1">
-                                                                <a href="/delete_slider/{{$slider->id}}" class="btn btn-warning waves-effect waves-light ml-2">Deactivate</a>
+                                                                <a href="/deactivate/{{$slider->id}}" class="btn btn-warning waves-effect waves-light ml-2">Deactivate</a>
                                                             </div>
 
                                                             @else

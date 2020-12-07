@@ -48,9 +48,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="example-search-input" class="col-md-2 col-form-label">Slider Lower Description </label>
+                                                <label for="example-search-input" class="col-md-2 col-form-label">Call to Action(CTA)</label>
                                                 <div class="col-md-10">
                                                     <input class="form-control" type="text" value="" id="example-search-input" name="description02">
+                                                    <p>The above should be a link/button text</p>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

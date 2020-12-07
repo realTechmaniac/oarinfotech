@@ -26,7 +26,28 @@
         
                                         <h4 class="card-title"></h4>
                                         <p class="card-title-desc">User Profile Details</p>
-        
+
+                                        @if(session()->has('success_message'))
+                                            
+                                            <div class="alert alert-success">
+                                                
+                                                {{session()->get('success_message')}}
+
+                                            </div>
+
+                                        @endif
+                                        @if($errors->any())
+                                            <div class="alert alert danger">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+
+                                                        <li>{{ $error }}</li>
+
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+
                                         <form method="POST" action="{{route('user.update')}}"> 
 
                                             @csrf
@@ -50,7 +71,7 @@
 		                                        	<div class="form-group row">
 					                                     <label for="example-text-input" class="col-md-2 col-form-label">Email</label>
 			                                            <div class="col-md-10">
-			                                                <input class="form-control" type="Email" value="{{old('name', $user->email)}}" id="example-text-input" name="email">
+			                                                <input class="form-control" type="Email" value="{{old('email ', $user->email)}}" id="example-text-input" name="email">
 			                                            </div>
 		                                       		 </div>
                                         		</div>
@@ -62,7 +83,7 @@
 		                                        	<div class="form-group row">
 					                                     <label for="example-text-input" class="col-md-2 col-form-label">Phone Number</label>
 			                                            <div class="col-md-10">
-			                                                <input class="form-control" type="Number" value="{{old('name', $user->phone_number)}}" id="example-text-input">
+			                                                <input class="form-control" type="Number" value="{{old('phonenumber', $user->phonenumber)}}" id="example-text-input" name="phonenumber">
 			                                            </div>
 		                                       		 </div>
                                         		</div>
@@ -75,7 +96,8 @@
                                                     <div class="form-group row">
                                                          <label for="example-text-input" class="col-md-2 col-form-label">Password</label>
                                                         <div class="col-md-10">
-                                                            <input class="form-control" type="Email" value="" id="example-text-input">
+                                                            <input class="form-control" type="text" value="" id="example-text-input" name="password" placeholder="">
+                                                            <p>Leave password blank  to retain current password</p>
                                                         </div>
                                                      </div>
                                                 </div>
@@ -88,7 +110,7 @@
                                                     <div class="form-group row">
                                                          <label for="example-text-input" class="col-md-2 col-form-label">Confirm Password</label>
                                                         <div class="col-md-10">
-                                                            <input class="form-control" type="Email" value="" id="example-text-input">
+                                                            <input class="form-control" type="text" value="" id="example-text-input" name="password_confirmation">
                                                         </div>
                                                      </div>
                                                 </div>

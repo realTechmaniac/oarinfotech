@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::enableForeignKeyConstraints();
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone_number');
-            $table->string('amount_to_pay');
+            $table->string('email');
+            $table->string('phonenumber');
+            $table->mediumInteger('amount_to_pay');
             $table->string('total_amount');
+            $table->integer('is_approved')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +34,6 @@ class CreateBookingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('orders');
     }
 }

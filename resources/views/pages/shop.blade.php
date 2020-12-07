@@ -261,17 +261,31 @@
                                         </div>
                                         <div class="product__hover__info">
                                             <ul class="product__action">
-                                                <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                <li><a title="Quick View" href="/products/{{$product->id}}"><span class="ti-plus"></span></a></li>
+                                                <li>
+
+
+                                              <form method="POST" action="{{route('cart.store')}}">
+
+                                                    @csrf
+
+                                                    <input type="hidden" name="id" value="{{$product->id}}">
+                                                    <input type="hidden" name="name" value="{{$product->product_name}}">
+                                                    <input type="hidden" name="price" value="{{$product->new_price}}">
+                                                    <input type="hidden" name="image" value="/storage/product_images/{{$product->product_image}}">
+                                                    <button type="submit" class="ti-shopping-cart" title="Add TO Cart"></button>
+
+                                                </form>
+                                                
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product__details">
                                         <h2><a href="product-details.html">{{$product->product_name}}</a></h2>
                                         <ul class="product__price">
-                                            <li class="old__price">{{$product->old_price}}</li>
-                                            <li class="new__price">{{$product->new_price}}</li>
+                                           <li class="old__price"> &#8358;{{$product->addThousand($product->old_price)}}</li>
+                                            <li class="new__price"> &#8358;{{$product->addThousand($product->new_price)}}</li>
                                         </ul>
                                     </div>
                                 </div>

@@ -3,7 +3,7 @@
     @section('content')
         <div class="body__overlay"></div>
         <!-- Start Offset Wrapper -->
-        <div class="offset__wrapper">
+        <div class="offset__wrapper" style="margin-top: 40px;">
             <!-- Start Search Popap -->
             <div class="search__area">
                 <div class="container" >
@@ -144,14 +144,14 @@
                         <div class="slider__container slider--one">
                             <div class="slider__activation__wrap owl-carousel owl-theme">
                                 <!-- Start Single Slide -->
-                                <div class="slide slider__full--screen slider-height-inherit slider-text-right" style="background: rgba(0, 0, 0, 0) url(asset/images/others/hero.png) no-repeat scroll center center / cover ;">
+                                <div class="slide slider__full--screen slider-height-inherit slider-text-right" style="background: rgba(0, 0, 0, 0) url(asset/images/bg/ld2.jpg) no-repeat scroll center center / cover ;">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-10 col-lg-8 col-md-offset-2 col-lg-offset-4 col-sm-12 col-xs-12">
                                                 <div class="slider__inner">
                                                     <h1>New Product <span class="text--theme">Collection</span></h1>
                                                     <div class="slider__btn">
-                                                        <a class="htc__btn" href="cart.html">shop now</a>
+                                                        <a class="htc__btn" href="/shop">shop now</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,14 +160,14 @@
                                 </div>
                                 <!-- End Single Slide -->
                                 <!-- Start Single Slide -->
-                                <div class="slide slider__full--screen slider-height-inherit  slider-text-left" style="background: rgba(0, 0, 0, 0) url(asset/images/slider/bg/2.png) no-repeat scroll center center / cover ;">
+                                <div class="slide slider__full--screen slider-height-inherit  slider-text-left" style="background: rgba(0, 0, 0, 0) url(asset/images/bg/ld1.jpg) no-repeat scroll center center / cover ;">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
                                                 <div class="slider__inner">
-                                                    <h1>New Product <span class="text--theme">Collection</span></h1>
+                                                    <h1>New Products <span class="text--theme">Collection</span></h1>
                                                     <div class="slider__btn">
-                                                        <a class="htc__btn" href="cart.html">shop now</a>
+                                                        <a class="htc__btn" href="/shop">shop now</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,41 +204,54 @@
         <!-- End Feature Product -->
         <div class="only-banner ptb--100 bg__white">
             <div class="container">
-                 <section>
-             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-              </ol>
+                     <section>
+                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <!-- <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                  </ol>
+     -->
+                  <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                          <img src="asset/images/others/slider1.png" alt="...">
+                          <div class="carousel-caption">
+                            <h2 style="font-size: 40px;">50% off on our gadgets</h2>
+                             <!-- Start Load More BTn -->
+                            <div class="row mt--50">
+                                <div class="col-md-12">
+                                    <div class="htc__loadmore__btn">
+                                        <a href="/shop">SHOP NOW</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Load More BTn -->
 
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <img src="asset/images/others/slider1.png" alt="...">
-                  <div class="carousel-caption">
-                    ...
-                  </div>
-                </div>
-                <div class="item">
-                  <img src="asset/images/others/slider2.png" alt="...">
-                  <div class="carousel-caption">
-                    ...
-                  </div>
-                </div>
-                ...
-              </div>
+                          </div>
+                        </div>
+                        @foreach($sliders as $slider)
+                        <div class="item">
+                            <img src="/storage/slider_images/{{$slider->slider_image}}" alt="...">
+                            <div class="carousel-caption">
+                                
+                                <h2 style="font-size: 40px;">{{ $slider->slider_upper_description }}</h2>
+                            
+                                <div class="row mt--50">
+                                    <div class="col-md-12">
+                                        <div class="htc__loadmore__btn">
+                                            <a href="/shop">{{ $slider->slider_lower_description }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+                        @endforeach
+                   </div>
 
               <!-- Controls -->
-              <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+        
             </div>
         </section>
                
@@ -262,7 +275,10 @@
                                 </ul>
                             </div>
                         <div class="product-slider-active2">
-                            @foreach($products as $product)
+                           
+                           @if(count($products) > 0)
+
+                                 @foreach($products as $product)
                                 <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
                                 <div class="product">
                                     <div class="product__inner">
@@ -273,22 +289,39 @@
                                         </div>
                                         <div class="product__hover__info">
                                             <ul class="product__action">
-                                                <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                <li><a title="Add TO Cart" href="/cart"><span class="ti-shopping-cart"></span></a></li>
-                                                <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                <li><a title="Quick View" href="/products/{{$product->id}}"><span class="ti-plus"></span></a></li>
+
+                                                <li>
+
+
+                                              <form method="POST" action="{{route('cart.store')}}">
+
+                                                    @csrf
+
+                                                    <input type="hidden" name="id" value="{{$product->id}}">
+                                                    <input type="hidden" name="name" value="{{$product->product_name}}">
+                                                    <input type="hidden" name="price" value="{{$product->new_price}}">
+                                                    <input type="hidden" name="image" value="/storage/product_images/{{$product->product_image}}">
+                                                    <button type="submit" class="ti-shopping-cart" title="Add TO Cart"></button>
+
+                                                </form>
+                                                
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product__details">
                                         <h2><a href="/showproduct/{{$product->id}}">{{$product->product_name}}</a></h2>
                                         <ul class="product__price">
-                                            <li class="old__price"> &#8358;{{$product->old_price}}</li>
-                                            <li class="new__price"> &#8358;{{$product->new_price}}</li>
+                                            <li class="old__price"> &#8358;{{$product->addThousand($product->old_price)}}</li>
+                                            <li class="new__price"> &#8358;{{$product->addThousand($product->new_price)}}</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
+
+                           @endif
                         
                         </div>
                     </div>
@@ -327,7 +360,9 @@
                                     <div class="row">
                                         <div class="product-slider-active2">
 
-                                            @foreach($featured_products as $value)
+                                            @if(count($featured_products) > 0)
+
+                                                  @foreach($featured_products as $value)
                                             <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
                                                 <div class="product">
                                                     <div class="product__inner">
@@ -338,22 +373,41 @@
                                                         </div>
                                                         <div class="product__hover__info">
                                                             <ul class="product__action">
-                                                                <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                                <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                                <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                                <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="/products/{{$product->id}}"><span class="ti-plus"></span></a></li>
+                                                               <li>
+
+
+                                                              <form method="POST" action="{{route('cart.store')}}">
+
+                                                                    @csrf
+
+                                                                    <input type="hidden" name="id" value="{{$product->id}}">
+                                                                    <input type="hidden" name="name" value="{{$product->product_name}}">
+                                                                    <input type="hidden" name="price" value="{{$product->new_price}}">
+                                                                    <input type="hidden" name="image" value="/storage/product_images/{{$product->product_image}}">
+                                                                    <button type="submit" class="ti-shopping-cart" title="Add TO Cart"></button>
+
+                                                                </form>
+                                                                
+                                                                </li>
+                                                               
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div class="product__details">
                                                         <h2><a href="product-details.html">{{$value->product_name}}</a></h2>
                                                         <ul class="product__price">
-                                                            <li class="old__price">{{$value->old_price}}</li>
-                                                            <li class="new__price">{{$value->new_price}}</li>
+                                                           <li class="old__price"> &#8358;{{$product->addThousand($value->old_price)}}</li>
+                                            <li class="new__price"> &#8358;{{$product->addThousand($value->new_price)}}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                             @endforeach
+                                          
+
+
+                                            @endif
                                             
                                         </div>
                                     </div>
@@ -372,7 +426,7 @@
                                                         <div class="product__hover__info">
                                                             <ul class="product__action">
                                                                 <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                                <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
+                                                                <li><a title="Add TO Cart" href=""><span class="ti-shopping-cart"></span></a></li>
                                                                 <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
                                                             </ul>
                                                         </div>
@@ -423,7 +477,7 @@
                                                             <ul class="product__action">
                                                                 <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
                                                                 <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                                <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                                
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -471,9 +525,8 @@
                                                         </div>
                                                         <div class="product__hover__info">
                                                             <ul class="product__action">
-                                                                <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                                <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                                <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                                <li><a title="Quick View" href=""><span class="ti-plus"></span></a></li>
+                                                                <li><a title="Add TO Cart" href=""><span class="ti-shopping-cart"></span></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -521,6 +574,7 @@
                                             <div class="col-md-4 single__pro col-lg-4 cat--1 col-sm-4 col-xs-12">
                                                 <div class="product">
                                                     <div class="product__inner">
+
                                                         <div class="pro__thumb">
                                                             <a href="#">
                                                                 <img src="asset/images/product/9.png" alt="product asset/images">
@@ -528,9 +582,10 @@
                                                         </div>
                                                         <div class="product__hover__info">
                                                             <ul class="product__action">
+
                                                                 <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
                                                                 <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                                <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                            
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -712,7 +767,9 @@
                                 <div class="tab-pane active" id="home9">
                                     <div class="row">
                                         <div class="product-slider-active2">
-                                            @foreach($latest_products as $latest)
+                                            @if(    count($latest_products) > 0)
+
+                                                @foreach($latest_products as $latest)
                                             <div class="col-md-3 single__pro col-lg-3 cat--1 col-sm-4 col-xs-12">
                                                 <div class="product">
                                                     <div class="product__inner">
@@ -724,21 +781,37 @@
                                                         <div class="product__hover__info">
                                                             <ul class="product__action">
                                                                 <li><a data-toggle="modal" data-target="#productModal" title="Quick View" class="quick-view modal-view detail-link" href="#"><span class="ti-plus"></span></a></li>
-                                                                <li><a title="Add TO Cart" href="cart.html"><span class="ti-shopping-cart"></span></a></li>
-                                                                <li><a title="Wishlist" href="wishlist.html"><span class="ti-heart"></span></a></li>
+                                                                <li>
+
+
+                                              <form method="POST" action="{{route('cart.store')}}">
+
+                                                    @csrf
+
+                                                    <input type="hidden" name="id" value="{{$product->id}}">
+                                                    <input type="hidden" name="name" value="{{$product->product_name}}">
+                                                    <input type="hidden" name="price" value="{{$product->new_price}}">
+                                                    <input type="hidden" name="image" value="/storage/product_images/{{$product->product_image}}">
+                                                    <button type="submit" class="ti-shopping-cart" title="Add TO Cart"></button>
+
+                                                </form>
+                                                
+                                                </li>
+                                                            
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div class="product__details">
-                                                        <h2><a href="product-details.html">{{$latest->product_description}}</a></h2>
+                                                        <h2><a href="product-details.html">{{$latest->product_name}}</a></h2>
                                                         <ul class="product__price">
-                                                            <li class="old__price">{{$latest->old_price}}</li>
-                                                            <li class="new__price">{{$latest->new_price}}</li>
+                                                           <li class="old__price"> &#8358;{{$product->addThousand($latest->old_price)}}</li>
+                                                            <li class="new__price"> &#8358;{{$product->addThousand($latest->new_price)}}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                            @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -1002,3 +1075,5 @@
         })
         </script>
 @endsection
+
+

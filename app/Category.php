@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Product;
 
 class Category extends Model
 {
@@ -15,6 +16,27 @@ class Category extends Model
 
     public function products(){
 
-    	$this->hasMany(Product::class);
+    	return $this->hasMany('App\Product');
+    }
+
+
+     public function countProducts($catgoryname){
+
+
+     $result =   count(Product::where('product_category', $catgoryname)->get());
+
+
+     return $result;
+     
+    }
+    
+
+
+    public function showProductsInCategory($categoryname){
+
+       $products =  DB::table('products')->where('product_category','=', $categoryname)->get();
+
+       return $products;
+
     }
 }

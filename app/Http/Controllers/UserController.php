@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Order;
+
+use Auth;
 class UserController extends Controller
 {
     /**
@@ -13,7 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('dashboard.pages.user_index');
+
+        
+
+        $orders   = Order::orderBy('created_at', 'desc')->take(5);
+
+        return view('dashboard.pages.user_index', compact('orders'));
     }
 
     /**
@@ -70,12 +78,30 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone_number' => ['required', 'string', 'max:11'],
+        $request->validate([
+            'name'          =>  'required|string|max:255',
+            'email'         =>  'required|string|email|max:255|unique:users,email,'.auth()->id(),
+            'password'      =>  'sometimes|nullable|string|min:8|confirmed',
+            'phonenumber'  =>   'required|string|max:11',
         ]);
+
+        $input = $request->except('password', 'password_confirmation');
+
+        $user  = auth()->user();
+
+        if (! $request->filled('password')) {
+            
+            $user->fill($input)->save;
+
+            return back()->with('success_message', 'Profile Updated Successfully');
+        }
+
+        $user->password = bcrypt($request->password);
+
+        $user->fill($input)->save();
+
+        return back()->with('success_message', 'Profile and Password Updated Successfully');
+
     }
 
     /**
@@ -87,5 +113,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function logout(){
+
+        Auth::logout();
+
+
+        return redirect('/');
     }
 }

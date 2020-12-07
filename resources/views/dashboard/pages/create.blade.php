@@ -51,14 +51,14 @@
                                             <div class="form-group row">
                                                 <label for="example-search-input" class="col-md-2 col-form-label">Old Product Price</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="text" value="{{old('old_price')}}" id="example-search-input" name="old_price">
+                                                    <input class="form-control" type="number" value="{{old('old_price')}}" id="example-search-input" name="old_price">
                                                 </div>
                                             </div>
 
                                              <div class="form-group row">
                                                 <label for="example-search-input" class="col-md-2 col-form-label">New Product Price</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="text" value="{{old('new_price')}}" id="example-search-input" name="new_price">
+                                                    <input class="form-control" type="number" value="{{old('new_price')}}" id="example-search-input" name="new_price">
                                                 </div>
                                             </div>
                                             <div class="form-group row">

@@ -123,6 +123,8 @@ class ProductController extends Controller
 
             $product->product_status      = $request->product_status;
 
+            $product->product_details     = $request->product_details;
+
             $product->save();
 
 
@@ -168,7 +170,8 @@ class ProductController extends Controller
     public function update(Request $request, $id)
 
     {    
-    
+
+        
         //Validate Updated Request::
 
         $request->validate([
@@ -179,9 +182,10 @@ class ProductController extends Controller
             'product_colour'      =>'required',
             'product_image'       =>'image',
             'product_discount'    =>'required',
-            'product_status'      =>'required',
+            'product_details'     =>'required',
             'product_category'    => 'required'
        ]);
+
 
 
          //File Upload
@@ -217,7 +221,7 @@ class ProductController extends Controller
 
 
         //Check if Product already exist in database::
-
+      
         $check_record = Product::where('product_name', $request->product_name)->first();
 
             if ($check_record) {
@@ -246,12 +250,13 @@ class ProductController extends Controller
 
             $product->product_image       = $fileNameToStore;
 
-            $product->product_category    = $request->product_category;
+            $product->product_details     = $request->product_details;
 
-            $product->product_status      = $request->product_status;
+            $product->product_category    = $request->product_category;
 
             $product->update();
 
+           
              return redirect('/products')->with('success', 'Product Updated Successfully');
 
             }
@@ -298,5 +303,14 @@ class ProductController extends Controller
 
             }
 
+    public function countProducts($catgoryname){
+
+
+     $result =   count(Product::where('product_category', $catgoryname)->get());
+
+
+     return $result;
+     
+    }
 
 }

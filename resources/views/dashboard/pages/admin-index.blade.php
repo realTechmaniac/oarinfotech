@@ -31,13 +31,13 @@
                            
                             <div class="col-xl-12">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="card mini-stats-wid">
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <p class="text-muted font-weight-medium">Bookings</p>
-                                                        <h4 class="mb-0">1,235</h4>
+                                                        <h4 class="mb-0">{{count($orders)}}</h4>
                                                     </div>
 
                                                     <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
@@ -49,31 +49,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Total Sales</p>
-                                                        <h4 class="mb-0"><span>&#8358;</span>35,000</h4>
-                                                    </div>
-
-                                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
-                                                        <span class="avatar-title rounded-circle bg-primary">
-                                                            <i class="bx bx-archive-in font-size-24"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
+                                    
+                                    <div class="col-md-4">
                                         <div class="card mini-stats-wid">
                                             <div class="card-body">
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <p class="text-muted font-weight-medium">Total Users</p>
-                                                        <h4 class="mb-0"><span>&#8358;</span>20,000</h4>
+                                                        <h4 class="mb-0">{{count($users)}}</h4>
                                                     </div>
 
                                                     <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -85,7 +68,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="card mini-stats-wid">
                                             <div class="card-body">
                                                 <div class="media">
@@ -121,43 +104,85 @@
                                             <table class="table table-centered table-nowrap mb-0">
                                                 <thead class="thead-light">
                                                     <tr>
-                                                        <th style="width: 20px;">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                                <label class="custom-control-label" for="customCheck1">&nbsp;</label>
-                                                            </div>
-                                                        </th>
-                                                        <th>Transaction ID</th>
-                                                        <th>Customer Name</th>
-                                                        <th>Date</th>
-                                                        <th>Total</th>
-                                                        <th>Amount Paid</th>
-                                                        <th>Payment Status</th>
+                                                       
+                                                        <th>S/N</th>
+                                                        <th>Date of Order</th>
+                                                        <th>Expiration Date</th>
+                                                        <th>Name of User</th>
+                                                        <th>Total Amount</th>
+                                                        <th>Amount to Pay</th>
+                                                        <th>Balance</th>
+                                                        <th>Order Status</th>
+                                                        <th>Action</th>
                                                         <th>View Details</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                
+                                                    
+                                                      @foreach($latest_orders as $key => $order)
                                                     <tr>
+                                                        
+                                                        <td>{{$key+1}}</td>
+
                                                         <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                                <label class="custom-control-label" for="customCheck4">&nbsp;</label>
+                                                            {{$order->changeDateFormat($order->created_at)}}
+                                                        </td>
+                                                        <td>
+                                                            {{$order->showExpiration($order->created_at)}}
+                                                        </td>
+                                                        <td>
+                                                            {{$order->name}}
+                                                        </td>
+                                                        <td>
+                                                            <i class=" mr-1"></i>{{$order->total_amount}}
+                                                        </td>
+                                                        <td>{{$order->amount_to_pay}}</td>
+                                                        <td>30,000</td>
+                                                        <td>
+
+                                                            @if($order->is_approved === 1)
+                                                             <span class="badge badge-primary">completed</span>
+                                                            @else
+
+                                                             <span class="badge badge-danger">pending</span>
+
+                                                            @endif
+
+                                                        </td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    @if($order->is_approved === 1)
+                                                                    <form method="POST" action="/dissapproveorder/{{$order->id}}">
+
+                                                                        @csrf
+
+                                                                        @method('PATCH')
+
+                                                                        <button class="btn btn-danger btn-sm btn-rounded" type="submit">Dissaprove</button>
+
+                                                                    </form> 
+                                                                    @else
+
+                                                                    <form method="POST" action="/approveorder/{{$order->id}}">
+
+                                                                        @csrf
+
+                                                                        @method('PATCH')
+
+                                                                        <button class="btn btn-primary btn-sm btn-rounded" type="submit">Approve</button>
+
+                                                                    </form> 
+
+
+                                                                    @endif
+                                                                </div>
+                                                                <div class="col">
+                                                                    <form method="POST" action="/deleteorder/{{$order->id}}">
+                                                                        <button class="btn btn-warning btn-sm btn-rounded">Delete</button>
+                                                                    </form> 
+                                                                </div>
                                                             </div>
-                                                        </td>
-                                                        <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2542</a> </td>
-                                                        <td>Juan Mitchell</td>
-                                                        <td>
-                                                            06 Oct, 2019
-                                                        </td>
-                                                        <td>
-                                                            $384
-                                                        </td>
-                                                        <td>
-                                                            <i class=" mr-1"></i>340
-                                                        </td>
-                                                        <td>
-                                                           <span class="badge badge-pill badge-soft-danger font-size-12">Pending</span>
                                                         </td>
                                                         
                                                         <td>
@@ -167,93 +192,8 @@
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                                                <label class="custom-control-label" for="customCheck5">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2543</a> </td>
-                                                        <td>Barry Dick</td>
-                                                        <td>
-                                                            05 Oct, 2019
-                                                        </td>
-                                                        <td>
-                                                            $412
-                                                        </td>
-                                                         <td>
-                                                            <i class="mr-1"></i>200
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge badge-pill badge-soft-danger font-size-12">Pending</span>
-                                                        </td>
-                                                       
-                                                        <td>
-                                                            <!-- Button trigger modal -->
-                                                            <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-toggle="modal" data-target=".exampleModal">
-                                                                View Details
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck6">
-                                                                <label class="custom-control-label" for="customCheck6">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2544</a> </td>
-                                                        <td>Ronald Taylor</td>
-                                                        <td>
-                                                            04 Oct, 2019
-                                                        </td>
-                                                        <td>
-                                                            $404
-                                                        </td>
-                                                         <td>
-                                                            <i class="mr-1"></i>200
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge badge-pill badge-soft-success font-size-12">Payment completed</span>
-                                                        </td>
-                                                       
-                                                        <td>
-                                                            <!-- Button trigger modal -->
-                                                            <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-toggle="modal" data-target=".exampleModal">
-                                                                View Details
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                                                <label class="custom-control-label" for="customCheck7">&nbsp;</label>
-                                                            </div>
-                                                        </td>
-                                                        <td><a href="javascript: void(0);" class="text-body font-weight-bold">#SK2545</a> </td>
-                                                        <td>Jacob Hunter</td>
-                                                        <td>
-                                                            04 Oct, 2019
-                                                        </td>
-                                                        <td>
-                                                            $392
-                                                        </td>
-                                                        <td>
-                                                            <i class="mr-1"></i>200
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge badge-pill badge-soft-success font-size-12">Payment completed</span>
-                                                        </td>
-                                                    
-                                                        <td>
-                                                            <!-- Button trigger modal -->
-                                                            <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-toggle="modal" data-target=".exampleModal">
-                                                                View Details
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+
+                                                @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

@@ -385,7 +385,16 @@
                                 <!-- item-->
                                 <a class="dropdown-item" href="/userprofile"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
                                 
-                                <a class="dropdown-item text-danger" href=""><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                                   <form method="POST" action="{{route('logout')}}" >
+                            
+                                        @csrf
+                                        <div class="text-left mt-3 ml-4">
+                                        
+                                        <button class="btn btn-danger btn-sm " type="submit"><i class="bx bx-power-off"></i>  LOGOUT</button>
+                                            
+                                        </div>
+                                                
+                                    </form>
                             </div>
                         </div>
 
@@ -418,7 +427,7 @@
 
 
                 <li>
-                    <a href="chat.html" class=" waves-effect">
+                    <a href="/orders" class=" waves-effect">
                         <i class="bx bx-chat"></i>
                         <span class="badge badge-pill badge-success float-right"></span>
                         <span>Transactions</span>
@@ -435,10 +444,10 @@
 
 
                 <li>
-                    <a href="#" class=" waves-effect">
+                    <a href="/shop" class=" waves-effect">
                         <i class="bx bx-shopping-bag "></i>
                         <span class="badge badge-pill badge-success float-right"></span>
-                        <span>Cart</span>
+                        <span>Shop</span>
                     </a>
                 </li>
 
